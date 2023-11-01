@@ -10,13 +10,14 @@ const AnimeList = ({ apiNime }) => {
             <Link
               href={`/${data.mal_id}`}
               className="cursor-pointer shadow-xl rounded-lg"
+              key={data.mal_id}
             >
               <Image
                 src={data.images.webp.image_url}
                 alt={data.title}
                 width={300}
                 height={400}
-                className="aspect-[3/4] object-cover rounded-t-xl"
+                className="aspect-[3/4] object-cover rounded-t-xl transition-all"
               />
               <div className="lg:text-md md:text-sm text-xs font-semibold p-4">
                 {data.title}
