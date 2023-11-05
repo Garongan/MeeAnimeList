@@ -13,7 +13,7 @@ const Page = async ({ params }) => {
       {/* anime paling populer start */}
       <section>
         <Header
-          title={`nih hasilnya dari ${searchAnime}`}
+          title={`nih hasilnya dari ${keySearch.replace(/%20/g, ' ')}`}
         />
         <AnimeList apiNime={searchAnime} />
       </section>

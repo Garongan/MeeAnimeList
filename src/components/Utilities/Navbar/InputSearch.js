@@ -18,11 +18,13 @@ const InputSearch = () => {
   return (
     <div className="relative">
       <form onSubmit={handleSearch}>
-        <input
-          placeholder="cari anime nih?..."
-          className="lg:text-md md:text-sm text-xs p-2 rounded-lg w-full"
-          ref={searchRef}
-        />
+        <div className="flex justify-end">
+          <input
+            placeholder="cari anime nih?..."
+            className="lg:text-md md:text-sm text-xs p-2 rounded-lg md:w-60 w-40 focus-visible:md:w-72 focus-visible:w-48 transition-all"
+            ref={searchRef}
+          />
+        </div>
         <button className="absolute top-1.5 end-2" type="submit">
           <Search />
         </button>
