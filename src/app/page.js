@@ -4,13 +4,13 @@ import Header from "@/components/AnimeList/Header";
 const Page = async () => {
   const baseApiURl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const response = await fetch(`${baseApiURl}/top/anime?limit=8`);
+  const response = await fetch(`${baseApiURl}/top/anime?limit=12`);
   const topAnime = await response.json();
 
   return (
     <>
       {/* anime paling populer start */}
-      <section>
+      <section className="py-6">
         <Header
           title={"terpopuler gak sih"}
           linkHref={"/populer"}
@@ -21,7 +21,7 @@ const Page = async () => {
       {/* end */}
 
       {/* anime paling terbaru start */}
-      <section>
+      <section className="pb-6">
         <Header
           title={"yang masih segerrr"}
           linkHref={"/new"}

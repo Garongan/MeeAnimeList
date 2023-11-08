@@ -10,9 +10,10 @@ const InputSearch = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const keySearch = searchRef.current.value;
-
-    router.push(`/search/${keySearch}`);
+    if (searchRef.current.value != '') {
+      const keySearch = searchRef.current.value;
+      router.push(`/search/${keySearch}`);
+    }
   };
 
   return (
@@ -21,7 +22,8 @@ const InputSearch = () => {
         <div className="flex justify-end">
           <input
             placeholder="cari anime nih?..."
-            className="lg:text-md md:text-sm text-xs p-2 rounded-lg md:w-60 w-40 focus-visible:md:w-72 focus-visible:w-48 transition-all"
+            className="lg:text-md md:text-sm text-xs p-2 rounded-lg
+            md:w-60 w-40 focus-visible:md:w-72 focus-visible:w-48 transition-all"
             ref={searchRef}
           />
         </div>
