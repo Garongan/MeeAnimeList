@@ -10,10 +10,9 @@ const InputSearch = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    if (searchRef.current.value != '') {
-      const keySearch = searchRef.current.value;
-      router.push(`/search/${keySearch}`);
-    }
+    const keySearch = searchRef.current.value;
+    if (!keySearch) return;
+    router.push(`/search/${keySearch}`);
   };
 
   return (
@@ -23,7 +22,7 @@ const InputSearch = () => {
           <input
             placeholder="cari anime nih?..."
             className="lg:text-md md:text-sm text-xs p-2 rounded-lg
-            md:w-60 w-40 focus-visible:md:w-72 focus-visible:w-48 transition-all"
+            md:w-60 w-full focus-visible:md:w-72 focus-visible:w-48 transition-all"
             ref={searchRef}
           />
         </div>

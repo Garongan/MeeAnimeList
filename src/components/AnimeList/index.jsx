@@ -1,15 +1,16 @@
+import Loading from "@/app/loading";
 import Image from "next/image";
 import Link from "next/link";
 
 const AnimeList = ({ apiNime }) => {
   return (
-    <>
+    <div className="pb-6">
       <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4">
-        {apiNime.data.map((data) => {
+        {apiNime.data?.map((data) => {
           return (
             <Link
               href={`/${data.mal_id}`}
-              className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-105 hover:-translate-y-2 transition-all duration-300"
+              className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
               key={data.mal_id}
             >
               <Image
@@ -17,7 +18,7 @@ const AnimeList = ({ apiNime }) => {
                 alt={data.title}
                 width={300}
                 height={400}
-                className="aspect-[3/4] object-fill rounded-t-xl"
+                className="aspect-[3/4] rounded-t-xl"
               />
               <div className="lg:text-md md:text-sm text-xs font-semibold p-4">
                 {data.title}
@@ -26,7 +27,7 @@ const AnimeList = ({ apiNime }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
