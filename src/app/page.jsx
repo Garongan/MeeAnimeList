@@ -3,13 +3,12 @@
 
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
+import { getAnimeResponse } from "./services/api-libs";
 
 const Page = async () => {
-  const baseApiURl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const responseTopAnime = await fetch(`${baseApiURl}/top/anime?limit=12`);
-  const topAnime = await responseTopAnime.json();
-  const responseSeasonsNow = await fetch(`${baseApiURl}/seasons/now?limit=12`);
-  const seasonsNow = await responseSeasonsNow.json();
+  // feticing api
+  const topAnime = await getAnimeResponse("top/anime", "limit=12");
+  const seasonsNow = await getAnimeResponse("seasons/now", "limit=12");
 
   return (
     <>

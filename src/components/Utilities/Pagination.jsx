@@ -27,24 +27,33 @@ const Pagination = ({ page, lastPage, setPage, range }) => {
 
   return (
     <div className="flex justify-center items-center gap-4 pb-6 flex-wrap">
-      <button
-        className="transition-all hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl"
-        onClick={handlePrevPage}
-      >
-        Previous
-      </button>
+      {page == 1 ? null : (
+        <button
+          className="transition-all hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl"
+          onClick={handlePrevPage}
+        >
+          Previous
+        </button>
+      )}
+
       {pageRange.map((number, index) => (
-        <button key={index} onClick={handlePage} className="hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl">
+        <button
+          key={index}
+          onClick={handlePage}
+          className="hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl"
+        >
           {number + page}
         </button>
       ))}
       <p className="py-2 px-3 bg-color-accent rounded-lg">of {lastPage}</p>
-      <button
-        className="transition-all hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl"
-        onClick={handleNextPage}
-      >
-        Next
-      </button>
+      {page >= lastPage ? null : (
+        <button
+          className="transition-all hover:text-color-secondary py-2 px-3 bg-color-accent rounded-lg shadow-xl"
+          onClick={handleNextPage}
+        >
+          Next
+        </button>
+      )}
     </div>
   );
 };
