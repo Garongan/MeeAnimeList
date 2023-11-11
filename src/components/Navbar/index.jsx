@@ -22,16 +22,15 @@ const Navbar = () => {
   // Handler for scroll events
   const handleScroll = () => {
     // Update the scrolled state based on the scroll position
-    if (window.scrollY > 100) {
+    if (window.scrollY > 1) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
   };
 
-
   return (
-    <header className={`${isScrolled ? 'sticky top-5 bg-color-accent/75 backdrop-blur-sm mx-8 rounded-lg z-10' : 'flex bg-color-accent shadow-xl mx-0'} transition-all duration-300`}>
+    <header className={`${isScrolled ? 'sticky top-5 bg-color-accent/75 backdrop-blur-sm rounded-lg z-10 container mx-auto w-auto' : 'flex bg-color-accent shadow-xl max-w-full mx-auto'} transition-all duration-300`}>
       <div className="container mx-auto px-8 py-4 flex gap-2 justify-between md:items-center md:flex-row flex-col">
         <Link href="/" className="uppercase font-bold text-2xl">
           mexanime

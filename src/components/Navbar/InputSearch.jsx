@@ -27,7 +27,7 @@ const InputSearch = () => {
           />
         </div>
         <button className="absolute top-1.5 end-2" type="submit">
-          <Search />
+          <Search className="active:text-color-secondary" />
         </button>
       </form>
     </div>
