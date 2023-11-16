@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
-const Pagination = ({ page, lastPage, setPage, range }) => {
+const Pagination = ({ page, lastPage, setPage, totalItems }) => {
   const scrollTop = () => {
     window.scrollTo({
-      behavior: 'smooth',
+      behavior: "smooth",
       top: 0,
     });
   };
@@ -25,6 +25,9 @@ const Pagination = ({ page, lastPage, setPage, range }) => {
     scrollTop();
   };
 
+  const calculateRange = Math.ceil(totalItems / 25);
+  const range = calculateRange >= 5 ? 5 : calculateRange;
+
   const calculatePageRange = () => {
     if (page <= range) {
       // If the current page is within the first range, show first `range` pages
@@ -34,11 +37,17 @@ const Pagination = ({ page, lastPage, setPage, range }) => {
       return Array.from({ length: range }, (_, i) => lastPage - range + i + 1);
     } else {
       // Show a range around the current page
-      return Array.from({ length: range }, (_, i) => page - Math.floor(range / 2) + i);
+      return Array.from(
+        { length: range },
+        (_, i) => page - Math.floor(range / 2) + i
+      );
     }
   };
 
-  const pageRange = useMemo(() => calculatePageRange(), [page, range, lastPage]);
+  const pageRange = useMemo(
+    () => calculatePageRange(),
+    [page, range, lastPage]
+  );
 
   return (
     <div className="flex justify-center items-center gap-4 pb-6 flex-wrap">
@@ -57,8 +66,8 @@ const Pagination = ({ page, lastPage, setPage, range }) => {
           onClick={() => handlePage(number)}
           className={`${
             number === page
-              ? 'text-color-accent bg-color-secondary'
-              : 'hover:text-color-secondary bg-color-accent'
+              ? "text-color-accent bg-color-secondary"
+              : "hover:text-color-secondary bg-color-accent"
           } py-2 px-3 rounded-lg shadow-xl`}
         >
           {number}

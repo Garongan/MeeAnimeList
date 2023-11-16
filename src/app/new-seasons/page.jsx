@@ -27,7 +27,7 @@ const Page = () => {
         page={page}
         lastPage={newSeasonsAnime.pagination?.last_visible_page}
         setPage={setPage}
-        range={5}
+        totalItems={newSeasonsAnime.pagination?.items.total}
       />
     </>
   );

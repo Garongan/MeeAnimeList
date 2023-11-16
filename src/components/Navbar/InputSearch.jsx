@@ -24,6 +24,7 @@ const InputSearch = () => {
             className="lg:text-md md:text-sm text-xs p-2 rounded-lg
             md:w-60 w-full focus-visible:md:w-72 focus-visible:w-48 transition-all"
             ref={searchRef}
+            spellCheck={false}
           />
         </div>
         <button className="absolute top-1.5 end-2" type="submit">
