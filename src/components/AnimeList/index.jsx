@@ -11,7 +11,7 @@ const AnimeList = ({ apiNime }) => {
             {apiNime.data?.map((data) => {
               return (
                 <Link
-                  href={`/${data.mal_id}`}
+                  href={`/anime/${data.mal_id}`}
                   className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
                   key={data.mal_id}
                 >
@@ -22,7 +22,7 @@ const AnimeList = ({ apiNime }) => {
                     height={400}
                     className="aspect-[3/4] rounded-t-xl"
                   />
-                  <div className="lg:text-md md:text-sm text-xs font-semibold p-4">
+                  <div className="text-[80%] font-semibold p-4">
                     {data.title}
                   </div>
                 </Link>
