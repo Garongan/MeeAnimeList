@@ -8,8 +8,8 @@ const Page = async ({ params: { id } }) => {
 
   const PropHasList = ({ title, data }) => {
     return (
-      <li>
-        <span>{title}: </span>
+      <>
+        {title != null && <span>{title}: </span>}
         {data?.map((item) => {
           return (
             <Link
@@ -21,7 +21,7 @@ const Page = async ({ params: { id } }) => {
             </Link>
           );
         })}
-      </li>
+      </>
     );
   };
 
@@ -31,7 +31,7 @@ const Page = async ({ params: { id } }) => {
         {detailAnime.data.title}
       </div>
       <div className="flex flex-row border-2 border-color-accent rounded-b-lg divide-x-2">
-        <div className="w-3/12 flex flex-col divide-y-2 p-2">
+        <div className="w-1/4 flex flex-col divide-y-2 p-2">
           <div>
             <Image
               src={detailAnime.data.images.webp.large_image_url}
@@ -85,25 +85,35 @@ const Page = async ({ params: { id } }) => {
                 <span>Broadcast: </span> {detailAnime.data.broadcast.string}
               </li>
               {/* producers */}
-              <PropHasList
-                title="Producers"
-                data={detailAnime.data.producers}
-              />
+              <li>
+                <PropHasList
+                  title="Producers"
+                  data={detailAnime.data.producers}
+                />
+              </li>
               {/* licensors */}
-              <PropHasList
-                title="Licensors"
-                data={detailAnime.data.licensors}
-              />
+              <li>
+                <PropHasList
+                  title="Licensors"
+                  data={detailAnime.data.licensors}
+                />
+              </li>
               {/* studios */}
-              <PropHasList title="Studios" data={detailAnime.data.studios} />
+              <li>
+                <PropHasList title="Studios" data={detailAnime.data.studios} />
+              </li>
               {/* source */}
               <li>
                 <span>Source: </span> {detailAnime.data.source}
               </li>
               {/* genres */}
-              <PropHasList title="Genres" data={detailAnime.data.genres} />
+              <li>
+                <PropHasList title="Genres" data={detailAnime.data.genres} />
+              </li>
               {/* themes */}
-              <PropHasList title={"Themes"} data={detailAnime.data.themes} />
+              <li>
+                <PropHasList title={"Themes"} data={detailAnime.data.themes} />
+              </li>
               {/* duration */}
               <li>
                 <span>Duration: </span> {detailAnime.data.duration}
@@ -129,23 +139,68 @@ const Page = async ({ params: { id } }) => {
                 <span>Popularity: </span> #{detailAnime.data.popularity}
               </li>
               <li>
-                <span>Members: </span> {detailAnime.data.members.toLocaleString('en-US')}
+                <span>Members: </span>{" "}
+                {detailAnime.data.members.toLocaleString("en-US")}
               </li>
               <li>
-                <span>Favorites: </span> {detailAnime.data.favorites.toLocaleString('en-US')}
+                <span>Favorites: </span>{" "}
+                {detailAnime.data.favorites.toLocaleString("en-US")}
               </li>
             </ul>
           </div>
         </div>
-        <div className="w-auto">
-          <div className="flex flex-col items-center justify-center gap-2 m-2 p-2 bg-color-accent rounded-md">
-            <div className="w-full text-center text-[80%] bg-color-secondary rounded-lg text-color-primary">SCORE</div>
-            <div className="text-[200%] font-bold">{detailAnime.data.score}</div>
-            <div>{detailAnime.data.scored_by.toLocaleString('en-US')} users</div>
+        <div className="w-3/4 text-[90%] flex flex-row items-start">
+          {/* details penting anime */}
+          <div className="flex w-4/6 divide-x-2 h-32 divide-color-dark/50 bg-color-accent/50 rounded-md p-2 m-2 gap-2">
+            {/* score */}
+            <div className="flex flex-col items-center justify-center gap-1 p-2">
+              <div className="w-full text-center text-[80%] bg-color-secondary rounded-lg text-color-primary">
+                SCORE
+              </div>
+              <div className="text-[200%] font-bold">
+                {detailAnime.data.score}
+              </div>
+              <div>
+                {detailAnime.data.scored_by.toLocaleString("en-US")} users
+              </div>
+            </div>
+            {/* important details */}
+            <div className="flex flex-col p-2 place-content-between">
+              <ul className="flex gap-4">
+                <li>
+                  Ranked{" "}
+                  <span className="font-bold">#{detailAnime.data.rank}</span>
+                </li>
+                <div>
+                  Popularity{" "}
+                  <span className="font-bold">
+                    #{detailAnime.data.popularity}
+                  </span>
+                </div>
+                <div>
+                  Members{" "}
+                  <span className="font-bold">
+                    {detailAnime.data.members.toLocaleString("en-US")}
+                  </span>
+                </div>
+              </ul>
+              <div className="flex divide-x-2 divide-color-dark/50">
+                <div className="capitalize px-2">
+                  {detailAnime.data.season} {detailAnime.data.year}
+                </div>
+                <div className="px-2">{detailAnime.data.type}</div>
+                <div className="px-2">
+                  <PropHasList data={detailAnime.data.studios} />
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* video player */}
+          <div className="w-2/6 me-2 mt-2 mb-2 h-32">
+            <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id} />
           </div>
         </div>
       </div>
-      <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id} />
     </div>
   );
 };
