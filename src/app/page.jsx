@@ -3,12 +3,17 @@
 
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
-import { getAnimeResponse } from "./services/api-libs";
+import { getAnimeResponse, getNestedAnimeResponse } from "../libs/api-libs";
 
 const Page = async () => {
   // feticing api
   const topAnime = await getAnimeResponse("top/anime", "limit=12");
   const seasonsNow = await getAnimeResponse("seasons/now", "limit=12");
+  let recommendedAnime = await getNestedAnimeResponse(
+    "recommendations/anime",
+    "entry"
+  );
+  recommendedAnime = { data: recommendedAnime };
 
   return (
     <>
@@ -31,6 +36,17 @@ const Page = async () => {
           linkTitle={"pantau lah"}
         />
         <AnimeList apiNime={seasonsNow} />
+      </section>
+      {/* end */}
+
+      {/* anime rekomendasi */}
+      <section>
+        <Header
+          title={"recommended nih bos"}
+          linkHref={"/new-seasons"}
+          linkTitle={"aku mau lebih"}
+        />
+        <AnimeList apiNime={recommendedAnime} />
       </section>
       {/* end */}
     </>
