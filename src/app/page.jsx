@@ -24,7 +24,7 @@ const Page = async () => {
           linkHref={"/populer"}
           linkTitle={"lihat aku senpai!!"}
         />
-        <AnimeList apiNime={topAnime} />
+        <AnimeList apiNime={topAnime} isRecomendation={false} />
       </section>
       {/* end */}
 
@@ -35,7 +35,7 @@ const Page = async () => {
           linkHref={"/new-seasons"}
           linkTitle={"pantau lah"}
         />
-        <AnimeList apiNime={seasonsNow} />
+        <AnimeList apiNime={seasonsNow} isRecomendation={false} />
       </section>
       {/* end */}
 
@@ -46,7 +46,7 @@ const Page = async () => {
           linkHref={"/new-seasons"}
           linkTitle={"aku mau lebih"}
         />
-        <AnimeList apiNime={recommendedAnime} />
+        <AnimeList apiNime={recommendedAnime} isRecomendation={true} />
       </section>
       {/* end */}
     </>

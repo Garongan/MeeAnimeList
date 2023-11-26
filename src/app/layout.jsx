@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.className} tracking-tight bg-color-primary text-color-dark 2xl:text-xl xl:text-lg lg:text-base md:text-sm text-xs`}>
         <Navbar />
-        <div className="container mx-auto px-8">{children}</div>
+        <div className="container sm:container">{children}</div>
       </body>
     </html>
   );

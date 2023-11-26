@@ -15,5 +15,5 @@ export const getNestedAnimeResponse = async (resource, objectProperty) => {
     const nextData = response.data.find((item, index) => index === i)
     data.push(nextData)
   })
-  return data.flatMap((item) => item.entry)
+  return data
 };
