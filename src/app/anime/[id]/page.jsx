@@ -6,7 +6,9 @@ import Link from "next/link";
 const Page = async ({ params: { id } }) => {
   const detailAnime = await getAnimeResponse(`anime/${id}`);
   let charaVoice = await getAnimeResponse(`anime/${id}/characters`);
-  charaVoice = charaVoice.data.sort((a, b) => b.favorites - a.favorites).slice(0, 10)
+  charaVoice = charaVoice.data
+    .sort((a, b) => b.favorites - a.favorites)
+    .slice(0, 10);
 
   const PropHasList = ({ title, data }) => {
     return (
@@ -40,6 +42,7 @@ const Page = async ({ params: { id } }) => {
               alt={detailAnime.data.images.jpg.image_url}
               width={200}
               height={400}
+              priority={true}
               className="object-cover w-full"
             />
             <div className="font-semibold text-[105%] pt-6">
@@ -228,30 +231,28 @@ const Page = async ({ params: { id } }) => {
                       <p>{item.role}</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {item.voice_actors.map((voice) => {
+                  {item.voice_actors
+                    .map((voice, index) => {
                       if (voice.language === "Japanese") {
                         return (
-                          <>
+                          <div className="grid grid-cols-3 gap-2" key={index}>
                             <div className="text-end col-span-2">
                               <p>{voice.person.name}</p>
                               <p>{voice.language}</p>
                             </div>
                             <Image
-                              src={
-                                voice.person.images.jpg.image_url
-                              }
+                              src={voice.person.images.jpg.image_url}
                               alt="Voice Actor"
                               width={200}
                               height={400}
                               className="object-cover w-full"
                             />
-                          </>
+                          </div>
                         );
                       }
-                      return null
-                    }).find(Boolean)}
-                  </div>
+                      return null;
+                    })
+                    .find(Boolean)}
                 </div>
               ))}
             </div>
