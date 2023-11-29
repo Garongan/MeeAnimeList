@@ -32,8 +32,8 @@ const Page = async ({ params: { id } }) => {
       <div className="font-bold bg-color-accent p-2 rounded-t-lg text-[110%]">
         {detailAnime.data.title}
       </div>
-      <div className="flex flex-row border-4 border-color-accent rounded-b-lg divide-x-4 text-[80%]">
-        <div className="w-1/4 flex flex-col divide-y-2 p-2">
+      <div className="flex flex-col sm:flex-row border-4 border-color-accent rounded-b-lg divide-x-4 text-[80%]">
+        <div className="w-full sm:w-1/4 flex flex-col divide-y-2 p-2">
           <div>
             <Image
               src={detailAnime.data.images.webp.large_image_url}
@@ -151,9 +151,9 @@ const Page = async ({ params: { id } }) => {
             </ul>
           </div>
         </div>
-        <div className="w-3/4 grid grid-cols-3 grid-flow-row auto-rows-min gap-2 p-2">
+        <div className="w-full sm:w-3/4 grid grid-cols-3 grid-flow-row auto-rows-min gap-2 p-2">
           {/* details penting anime */}
-          <div className="grid grid-cols-4 col-span-2 divide-x divide-color-dark/50 bg-color-accent/50 rounded-md p-2">
+          <div className="grid sm:grid-cols-4 grid-cols-1 col-span-3 sm:col-span-2 sm:divide-x divide-color-dark/50 bg-color-accent/50 rounded-md p-2">
             {/* score */}
             <div className="grid col-span-1 justify-items-center justify-center place-content-between gap-1 p-2">
               <p className="w-full text-center text-[80%] bg-color-secondary rounded-lg text-color-primary">
@@ -194,7 +194,7 @@ const Page = async ({ params: { id } }) => {
             </div>
           </div>
           {/* video player */}
-          <div className="grid">
+          <div className="grid col-span-3 sm:col-span-1">
             <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id} />
           </div>
           {/* synopsis */}

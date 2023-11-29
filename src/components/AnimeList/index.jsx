@@ -24,14 +24,13 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                 return (
                   <div
                     key={index}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4"
                   >
-                    <div className="grid grid-cols-2 gap-4 ">
+                    <div className="grid grid-cols-2 gap-4">
                       {item.entry.map((data) => {
                         return (
                           <Link
                             href={`/anime/${data.mal_id}`}
-                            className="cursor-pointer h-fit mt-auto shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
+                            className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
                             key={data.mal_id}
                           >
                             <Image
@@ -48,7 +47,7 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                         );
                       })}
                     </div>
-                    <div className="shadow-xl rounded-xl p-4 flex flex-col gap-2 text-[80%] h-fit mb-auto">
+                    <div className="shadow-xl rounded-xl p-4 flex flex-col gap-2 text-[80%] h-fit">
                       <div className="flex flex-col">
                         <div className="font-semibold">Reason:</div>
                         {item.content}

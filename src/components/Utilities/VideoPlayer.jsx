@@ -7,6 +7,10 @@ import YouTube from "react-youtube";
 
 const VideoPlayer = ({ youtubeId }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const opts = {
+    height: "100%",
+    width: "100%",
+  };
 
   const handleVideoPlayer = () => {
     setIsOpen((prevstate) => !prevstate);
@@ -14,18 +18,20 @@ const VideoPlayer = ({ youtubeId }) => {
 
   const Player = () => {
     return (
-      <div className="z-10 fixed top-0 left-0 w-full h-full bg-color-dark/50">
-        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="z-10 fixed inset-0 bg-color-dark/50">
+        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xs sm:max-w-2xl lg:max-w-4xl">
           <button
             className="fixed -right-3 -top-3 bg-color-dark text-color-primary rounded-full"
             onClick={handleVideoPlayer}
           >
-            <XCircle />
+            <XCircle size={30} />
           </button>
           <YouTube
             videoId={youtubeId}
             onReady={(event) => event.target.playVideo()}
             onError={() => alert("No Trailer Video")}
+            opts={opts}
+            className="aspect-video"
           />
         </div>
       </div>
