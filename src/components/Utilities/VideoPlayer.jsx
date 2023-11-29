@@ -14,7 +14,7 @@ const VideoPlayer = ({ youtubeId }) => {
 
   const Player = () => {
     return (
-      <div className="fixed top-0 left-0 w-full h-full bg-color-dark/50">
+      <div className="z-10 fixed top-0 left-0 w-full h-full bg-color-dark/50">
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <button
             className="fixed -right-3 -top-3 bg-color-dark text-color-primary rounded-full"
@@ -46,13 +46,20 @@ const VideoPlayer = ({ youtubeId }) => {
           className="w-full h-full object-cover rounded-lg"
         />
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-color-primary bg-color-dark/80 rounded-lg border-2 border-color-primary p-1">
-          <div className="flex items-center gap-2"><PlayCircle /> Play</div>
+          <div className="flex items-center gap-2">
+            <PlayCircle /> Play
+          </div>
         </div>
       </button>
     );
   };
 
-  return isOpen ? <ViewPlayer /> : <Player />;
+  return (
+    <>
+      {!isOpen && <Player />}
+      <ViewPlayer />
+    </>
+  );
 };
 
 export default VideoPlayer;

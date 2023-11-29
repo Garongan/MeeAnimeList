@@ -5,6 +5,8 @@ import Link from "next/link";
 
 const Page = async ({ params: { id } }) => {
   const detailAnime = await getAnimeResponse(`anime/${id}`);
+  let charaVoice = await getAnimeResponse(`anime/${id}/characters`);
+  charaVoice = charaVoice.data.sort((a, b) => b.favorites - a.favorites).slice(0, 10)
 
   const PropHasList = ({ title, data }) => {
     return (
@@ -27,10 +29,10 @@ const Page = async ({ params: { id } }) => {
 
   return (
     <div className="py-6">
-      <div className="font-bold bg-color-accent p-2 rounded-t-lg">
+      <div className="font-bold bg-color-accent p-2 rounded-t-lg text-[110%]">
         {detailAnime.data.title}
       </div>
-      <div className="flex flex-row border-2 border-color-accent rounded-b-lg divide-x-2">
+      <div className="flex flex-row border-4 border-color-accent rounded-b-lg divide-x-4 text-[80%]">
         <div className="w-1/4 flex flex-col divide-y-2 p-2">
           <div>
             <Image
@@ -40,7 +42,7 @@ const Page = async ({ params: { id } }) => {
               height={400}
               className="object-cover w-full"
             />
-            <div className="font-semibold text-[80%] pt-6">
+            <div className="font-semibold text-[105%] pt-6">
               Alternative Titles
             </div>
           </div>
@@ -54,7 +56,7 @@ const Page = async ({ params: { id } }) => {
                 <span>Japanese: </span> {detailAnime.data.title_japanese}
               </li>
             </ul>
-            <div className="font-semibold text-[80%] pt-6">Information</div>
+            <div className="font-semibold text-[105%] pt-6">Information</div>
           </div>
           {/* information */}
           <div>
@@ -123,7 +125,7 @@ const Page = async ({ params: { id } }) => {
                 <span>Rating: </span> {detailAnime.data.rating}
               </li>
             </ul>
-            <div className="font-semibold text-[80%] pt-6">Statistics</div>
+            <div className="font-semibold text-[105%] pt-6">Statistics</div>
           </div>
           {/* statistics */}
           <div>
@@ -149,23 +151,19 @@ const Page = async ({ params: { id } }) => {
             </ul>
           </div>
         </div>
-        <div className="w-3/4 text-[90%] flex flex-row items-start">
+        <div className="w-3/4 grid grid-cols-3 grid-flow-row auto-rows-min gap-2 p-2">
           {/* details penting anime */}
-          <div className="flex w-4/6 divide-x-2 h-32 divide-color-dark/50 bg-color-accent/50 rounded-md p-2 m-2 gap-2">
+          <div className="grid grid-cols-4 col-span-2 divide-x divide-color-dark/50 bg-color-accent/50 rounded-md p-2">
             {/* score */}
-            <div className="flex flex-col items-center justify-center gap-1 p-2">
-              <div className="w-full text-center text-[80%] bg-color-secondary rounded-lg text-color-primary">
+            <div className="grid col-span-1 justify-items-center justify-center place-content-between gap-1 p-2">
+              <p className="w-full text-center text-[80%] bg-color-secondary rounded-lg text-color-primary">
                 SCORE
-              </div>
-              <div className="text-[200%] font-bold">
-                {detailAnime.data.score}
-              </div>
-              <div>
-                {detailAnime.data.scored_by.toLocaleString("en-US")} users
-              </div>
+              </p>
+              <p className="text-[200%] font-bold">{detailAnime.data.score}</p>
+              <p>{detailAnime.data.scored_by.toLocaleString("en-US")} users</p>
             </div>
             {/* important details */}
-            <div className="flex flex-col p-2 place-content-between">
+            <div className="grid col-span-3 p-2 place-content-between">
               <ul className="flex gap-4">
                 <li>
                   Ranked{" "}
@@ -184,20 +182,79 @@ const Page = async ({ params: { id } }) => {
                   </span>
                 </div>
               </ul>
-              <div className="flex divide-x-2 divide-color-dark/50">
-                <div className="capitalize px-2">
+              <div className="flex divide-x divide-color-dark/50">
+                <div className="capitalize pe-2">
                   {detailAnime.data.season} {detailAnime.data.year}
                 </div>
                 <div className="px-2">{detailAnime.data.type}</div>
-                <div className="px-2">
+                <div className="ps-2">
                   <PropHasList data={detailAnime.data.studios} />
                 </div>
               </div>
             </div>
           </div>
           {/* video player */}
-          <div className="w-2/6 me-2 mt-2 mb-2 h-32">
+          <div className="grid">
             <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id} />
+          </div>
+          {/* synopsis */}
+          <div className="grid col-span-3 divide-y-2">
+            <p className="font-semibold text-[105%]">Synopsis</p>
+            <p>{detailAnime.data.synopsis}</p>
+          </div>
+          {/* background */}
+          <div className="grid col-span-3 divide-y-2">
+            <p className="font-semibold text-[105%]">Background</p>
+            <p>{detailAnime.data.background}</p>
+          </div>
+          {/* chara and voice actor */}
+          <div className="grid col-span-3 divide-y-2">
+            <div className="font-semibold text-[105%]">
+              Characters & Voice Actors
+            </div>
+            <div className="grid grid-cols-2 gap-2 pt-2 text-[80%]">
+              {charaVoice.map((item) => (
+                <div key={item.mal_id} className="grid grid-cols-2">
+                  <div className="grid grid-cols-3 gap-2 items-start">
+                    <Image
+                      src={item.character.images.webp.image_url}
+                      alt={item.character.images.jpg.image_url}
+                      width={200}
+                      height={400}
+                      className="object-cover w-full"
+                    />
+                    <div className="grid grid-row-2 col-span-2 text-start">
+                      <p>{item.character.name}</p>
+                      <p>{item.role}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    {item.voice_actors.map((voice) => {
+                      if (voice.language === "Japanese") {
+                        return (
+                          <>
+                            <div className="text-end col-span-2">
+                              <p>{voice.person.name}</p>
+                              <p>{voice.language}</p>
+                            </div>
+                            <Image
+                              src={
+                                voice.person.images.jpg.image_url
+                              }
+                              alt="Voice Actor"
+                              width={200}
+                              height={400}
+                              className="object-cover w-full"
+                            />
+                          </>
+                        );
+                      }
+                      return null
+                    }).find(Boolean)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
