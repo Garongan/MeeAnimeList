@@ -5,15 +5,19 @@ export const getAnimeResponse = async (resource, query) => {
   return data;
 };
 
-export const getNestedAnimeResponse = async (resource, objectProperty) => {
-  const response = await getAnimeResponse(resource);
-  const randomIndex = Array.from({ length: 6 }, () =>
-    Math.floor(Math.random() * response.data.length)
-  );
-  const data = []
-  randomIndex.map((i) => {
-    const nextData = response.data.find((item, index) => index === i)
-    data.push(nextData)
-  })
-  return data
+export const getNestedAnimeResponse = async (resource, objectLength, query) => {
+  const response = await getAnimeResponse(resource, query);
+  if (objectLength == null) {
+    return response.data;
+  } else {
+    const randomIndex = Array.from({ length: 6 }, () =>
+      Math.floor(Math.random() * response.data.length)
+    );
+    const data = [];
+    randomIndex.map((i) => {
+      const nextData = response.data.find((_, index) => index === i);
+      data.push(nextData);
+    });
+    return data;
+  }
 };

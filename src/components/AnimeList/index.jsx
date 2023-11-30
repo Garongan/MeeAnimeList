@@ -19,18 +19,20 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
       {apiNime.data ? (
         <div className="pb-6">
           {isRecomendation ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            // recomendation
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
               {apiNime.data.flatMap((item, index) => {
                 return (
                   <div
                     key={index}
+                    className="space-y-4"
                   >
                     <div className="grid grid-cols-2 gap-4">
                       {item.entry.map((data) => {
                         return (
                           <Link
                             href={`/anime/${data.mal_id}`}
-                            className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
+                            className="cursor-pointer shadow-md shadow-color-dark/30 rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
                             key={data.mal_id}
                           >
                             <Image
@@ -47,7 +49,7 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                         );
                       })}
                     </div>
-                    <div className="shadow-xl rounded-xl p-4 flex flex-col gap-2 text-[80%] h-fit">
+                    <div className="shadow-inner shadow-color-dark/30 rounded-xl p-4 flex flex-col gap-2 text-[80%] h-fit">
                       <div className="flex flex-col">
                         <div className="font-semibold">Reason:</div>
                         {item.content}
@@ -71,12 +73,13 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
               })}
             </div>
           ) : (
+            // normal page
             <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4">
               {apiNime.data.map((data) => {
                 return (
                   <Link
                     href={`/anime/${data.mal_id}`}
-                    className="cursor-pointer shadow-xl rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
+                    className="cursor-pointer shadow-md shadow-color-dark/30 rounded-xl hover:text-color-secondary hover:scale-[102.5%] hover:-translate-y-1 transition-all duration-300"
                     key={data.mal_id}
                   >
                     <Image
@@ -85,6 +88,7 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                       width={300}
                       height={400}
                       className="aspect-[3/4] rounded-t-xl"
+                      priority={true}
                     />
                     <div className="text-[80%] font-semibold p-4">
                       {data.title}

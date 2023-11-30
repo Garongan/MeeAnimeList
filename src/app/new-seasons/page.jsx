@@ -22,7 +22,7 @@ const Page = () => {
   return (
     <>
       <HeaderMenu title={`baru di seasons ini ...${page}`} />
-      <AnimeList apiNime={newSeasonsAnime} />
+      <AnimeList apiNime={newSeasonsAnime} isRecomendation={false} />
       <Pagination
         page={page}
         lastPage={newSeasonsAnime.pagination?.last_visible_page}

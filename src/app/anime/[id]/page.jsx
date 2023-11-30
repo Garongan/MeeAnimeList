@@ -34,7 +34,7 @@ const Page = async ({ params: { id } }) => {
       <div className="font-bold bg-color-accent p-2 rounded-t-lg text-[110%]">
         {detailAnime.data.title}
       </div>
-      <div className="flex flex-col sm:flex-row border-4 border-color-accent rounded-b-lg divide-x-4 text-[80%]">
+      <div className="flex flex-col sm:flex-row border-4 border-color-accent rounded-b-lg sm:divide-x-4 sm:text-[80%]">
         <div className="w-full sm:w-1/4 flex flex-col divide-y-2 p-2">
           <div>
             <Image
@@ -215,7 +215,7 @@ const Page = async ({ params: { id } }) => {
             <div className="font-semibold text-[105%]">
               Characters & Voice Actors
             </div>
-            <div className="grid grid-cols-2 gap-2 pt-2 text-[80%]">
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-2 pt-2 sm:text-[80%]">
               {charaVoice.map((item) => (
                 <div key={item.mal_id} className="grid grid-cols-2">
                   <div className="grid grid-cols-3 gap-2 items-start">

@@ -11,7 +11,7 @@ const Page = async () => {
   const seasonsNow = await getAnimeResponse("seasons/now", "limit=12");
   let recommendedAnime = await getNestedAnimeResponse(
     "recommendations/anime",
-    "entry"
+    6
   );
   recommendedAnime = { data: recommendedAnime };
 
@@ -43,7 +43,7 @@ const Page = async () => {
       <section>
         <Header
           title={"recommended nih bos"}
-          linkHref={"/new-seasons"}
+          linkHref={"/recommendation"}
           linkTitle={"aku mau lebih"}
         />
         <AnimeList apiNime={recommendedAnime} isRecomendation={true} />
