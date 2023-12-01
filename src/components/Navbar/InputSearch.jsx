@@ -21,7 +21,7 @@ const InputSearch = () => {
         <div className="flex justify-end">
           <input
             placeholder="cari anime nih?..."
-            className="text-[80%] p-2 rounded-lg
+            className="p-2 rounded-lg
             md:w-60 w-full focus-visible:md:w-72 focus-visible:w-48 transition-all"
             ref={searchRef}
             spellCheck={false}

@@ -39,7 +39,7 @@ const Page = async ({ params: { id } }) => {
           <div>
             <Image
               src={detailAnime.data.images.webp.large_image_url}
-              alt={detailAnime.data.images.jpg.image_url}
+              alt=""
               width={200}
               height={400}
               priority={true}
@@ -221,7 +221,7 @@ const Page = async ({ params: { id } }) => {
                   <div className="grid grid-cols-3 gap-2 items-start">
                     <Image
                       src={item.character.images.webp.image_url}
-                      alt={item.character.images.jpg.image_url}
+                      alt=""
                       width={200}
                       height={400}
                       className="object-cover w-full"
@@ -242,7 +242,7 @@ const Page = async ({ params: { id } }) => {
                             </div>
                             <Image
                               src={voice.person.images.jpg.image_url}
-                              alt="Voice Actor"
+                              alt=""
                               width={200}
                               height={400}
                               className="object-cover w-full"

@@ -23,10 +23,7 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
             <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
               {apiNime.data.flatMap((item, index) => {
                 return (
-                  <div
-                    key={index}
-                    className="space-y-4"
-                  >
+                  <div key={index} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       {item.entry.map((data) => {
                         return (
@@ -37,19 +34,19 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                           >
                             <Image
                               src={data.images.webp.image_url}
-                              alt={data.title}
+                              alt=""
                               width={300}
                               height={400}
                               className="aspect-[3/4] rounded-t-xl"
                             />
-                            <div className="text-[80%] font-semibold p-4">
+                            <div className="font-semibold p-4">
                               {data.title}
                             </div>
                           </Link>
                         );
                       })}
                     </div>
-                    <div className="shadow-inner shadow-color-dark/30 rounded-xl p-4 flex flex-col gap-2 text-[80%] h-fit">
+                    <div className="shadow-inner shadow-color-dark/30 rounded-xl p-4 flex flex-col gap-2 h-fit">
                       <div className="flex flex-col">
                         <div className="font-semibold">Reason:</div>
                         {item.content}
@@ -84,15 +81,13 @@ const AnimeList = ({ apiNime, isRecomendation }) => {
                   >
                     <Image
                       src={data.images.webp.image_url}
-                      alt={data.title}
+                      alt=""
                       width={300}
                       height={400}
                       className="aspect-[3/4] rounded-t-xl"
                       priority={true}
                     />
-                    <div className="text-[80%] font-semibold p-4">
-                      {data.title}
-                    </div>
+                    <div className="font-semibold p-4">{data.title}</div>
                   </Link>
                 );
               })}
