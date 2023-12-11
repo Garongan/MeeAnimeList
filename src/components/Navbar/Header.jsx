@@ -4,7 +4,7 @@ import Link from "next/link";
 import InputSearch from "./InputSearch";
 import { useEffect, useState } from "react";
 
-const Navbar = ({ children }) => {
+const Header = () => {
   // Effect Hook to handle scroll event
   useEffect(() => {
     // Adding the scroll listener
@@ -39,15 +39,14 @@ const Navbar = ({ children }) => {
         className={`${isScrolled} ? bg-color-accent/75 backdrop-blur-sm rounded-lg : bg-color-accent shadow-md shadow-color-dark/30 transition-all duration-300`}
       >
         <div className="container py-4 flex gap-2 justify-between md:items-center md:flex-row flex-col">
-          <Link href="/" className="font-bold text-[150%] flex-1">
+          <Link href="/" className="font-bold text-[150%]">
             MeeAnimeList
           </Link>
           <InputSearch />
-          <div className="flex-none">{children}</div>
         </div>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+export default Header;
