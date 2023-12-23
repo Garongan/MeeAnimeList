@@ -22,7 +22,7 @@ const InputSearch = () => {
           <input
             placeholder="cari anime nih?..."
             className="sm:text-[80%] p-2 rounded-lg placeholder:text-color-dark hover:shadow-md shadow-color-dark/30 outline-none
-            h-10 md:w-60 w-full focus-visible:md:w-72 focus-visible:w-48 focus:shadow-md focus:outline-none transition-all bg-color-primary"
+            h-10 md:w-60 w-full focus-visible:md:w-72 focus-visible:w-48 focus:shadow-md focus:outline-none bg-color-primary transition-all duration-300"
             ref={searchRef}
             spellCheck={false}
           />
