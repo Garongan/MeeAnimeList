@@ -33,7 +33,7 @@ const Navbar = ({ children }) => {
     <header
       className={`${
         isScrolled ? "top-5 z-10 container" : "top-0 mx-0 px-0"
-      } sticky transition-all duration-300`}
+      } sticky transition-all duration-300 z-10`}
     >
       <div
         className={`${isScrolled} ? bg-color-accent/75 backdrop-blur-sm rounded-lg : bg-color-accent shadow-md shadow-color-dark/30 transition-all duration-300`}
